@@ -9,7 +9,7 @@ def get_team(team):
     elif team.lower() in ['barkom każany lwów', 'lwów', 'barkom', 'każany', 'barkom każay', 'kazany',
                           'barkom kazany lwów']:
         return 'https://www.plusliga.pl/statsTeams/type/teams/id/2100376.html'
-    elif team.lower() in ['bbts bielsko biała', 'bielsko biała', 'bielsko', 'bielsko biala']:
+    elif team.lower() in ['bbts bielsko biała', 'bielsko biała', 'bielsko', 'bielsko biala', 'bielsko-biała']:
         return 'https://www.plusliga.pl/statsTeams/type/teams/id/1548.html'
     elif team.lower() in 'cerrad enea czarni radom':
         return 'https://www.plusliga.pl/statsTeams/type/teams/id/1545.html'
@@ -17,7 +17,7 @@ def get_team(team):
         return 'https://www.plusliga.pl/statsTeams/type/teams/id/26787.html'
     elif team.lower() in 'gks katowice':
         return 'https://www.plusliga.pl/statsTeams/type/teams/id/29741.html'
-    elif team.lower() in 'grupa azoty zaksa kędzierzyn kożle':
+    elif team.lower() in 'grupa azoty zaksa kędzierzyn-koźle':
         return 'https://www.plusliga.pl/statsTeams/type/teams/id/1410.html'
     elif team.lower() in 'indykpol azs olsztyn':
         return 'https://www.plusliga.pl/statsTeams/type/teams/id/1406.html'
@@ -43,22 +43,22 @@ def get_answer(question, team):
     statistics = get_statistics(team)
     #staty drużynowe
     if question.lower() in ['ile mistrzostw polski', 'mistrzostwo', 'mistrzostwa polski', 'mistrzostwa']:
-        return f'Liczba zdobotych mistrzostw Polski to {statistics[0][0]}.'
+        return f'Liczba zdobytych mistrzostw Polski to {statistics[0][0]}.'
     elif question.lower() in ['ile wicemistrzostw polski', 'wicemistrzostwo', 'wicemistrzostwa polski', 'wicemistrzostwa']:
-        return f'Liczba zdobotych wicemistrzostw Polski to {statistics[0][1]}.'
+        return f'Liczba zdobytych wicemistrzostw Polski to {statistics[0][1]}.'
     elif question.lower() in ['ile trzecich miejsc', 'trzecie miejsce', 'trzecie']:
-        return f'Liczba zdobotych trzecich miejsc Polski to {statistics[0][2]}.'
+        return f'Liczba zdobytych trzecich miejsc Polski to {statistics[0][2]}.'
     elif question.lower() in ['podium mistrzostw polski', 'podium', 'ile razy na podium']:
-        return f'Liczba zdobotych mistrzostw Polski to {statistics[0][0]}. ' \
-               f'Liczba zdobotych wicemistrzostw Polski to {statistics[0][1]}.' \
-               f'Liczba zdobotych trzecich miejsc Polski to {statistics[0][2]}.'
+        return f'Liczba zdobytych mistrzostw Polski to {statistics[0][0]}. ' \
+               f'Liczba zdobytych wicemistrzostw Polski to {statistics[0][1]}. ' \
+               f'Liczba zdobytych trzecich miejsc Polski to {statistics[0][2]}. '
     elif question.lower() in ['ile wygranych meczy', 'ile wygranych', 'wygrane']:
         return f'Drużyna wygrała {statistics[0][4]} meczy'
     elif question.lower() in ['ile przegranych meczy', 'ile przegranych', 'przegrane']:
         return f'Drużyna przegrała {statistics[0][5]} meczy'
     elif question.lower() in ['najdłuższa seria wygranych', 'seria wygranych', 'jaka najdłuższa seria wygranych']:
         return f'Najdłuższa seria wygranych meczy drużyny to {statistics[0][6]} '
-    elif question.lower() in ['najdłuższa seria przgranych', 'seria przegranych', 'jaka najdłuższa seria przegranych']:
+    elif question.lower() in ['najdłuższa seria przegranych', 'seria przegranych', 'jaka najdłuższa seria przegranych']:
         return f'Najdłuższa seria przegranych meczy drużyny to {statistics[0][7]} '
 
     #staty łączne
@@ -69,9 +69,9 @@ def get_answer(question, team):
     elif question.lower() in ['zdobyte punkty', 'ile zdobytych punktów', 'ile punktów', 'punkty']:
         return f'Liczba zdobytych punktów przez drużynę to {statistics[1][2]} '
     elif question.lower() in ['zagrywka']:
-        return f'Liczba wykonanych zagrywek przez drużynę to {statistics[1][3]}' \
-               f'`Asy {statistics[1][4]}.' \
-               f'Błędne zagrywki {statistics[1][5]}.' \
+        return f'Liczba wykonanych zagrywek przez drużynę to {statistics[1][3]}.  ' \
+               f'`Asy {statistics[1][4]}. ' \
+               f'Błędne zagrywki {statistics[1][5]}. ' \
                f'Średnia liczba asów na set {statistics[1][6]}.'
     elif question.lower() in ['as', 'asy', 'asy serwisowe', 'ile asów serwisowych']:
         return f'Liczba asów to {statistics[1][4]}. '
@@ -80,11 +80,10 @@ def get_answer(question, team):
     elif question.lower() in ['średnia asów', 'ile asów na set', 'asy na set']:
         return f'Średnia asów na set to {statistics[1][6]}. '
     elif question.lower() in ['przyjęcie']:
-        return f'Liczba wykonanych przyjęć przez drużynę to {statistics[1][7]}' \
-               f'Błędne przyjęcia {statistics[1][8]}.' \
-               f'Negatywne przyjęcia {statistics[1][9]}.' \
-               f'Perfekcyjne przyjęcia {statistics[1][10]}. Procentowo {statistics[1][11]}%.' \
-               f'Średnia liczba asów na set {statistics[1][6]}.'
+        return f'Liczba wykonanych przyjęć przez drużynę to {statistics[1][7]}. ' \
+               f'Błędne przyjęcia {statistics[1][8]}. ' \
+               f'Negatywne przyjęcia {statistics[1][9]}. ' \
+               f'Perfekcyjne przyjęcia {statistics[1][10]}.   Procentowo {statistics[1][11]}%. '
     elif question.lower() in ['ile przyjęć', 'liczba przyjęć']:
         return f'Liczba wykonanych przyjęć przez drużynę to {statistics[1][7]}.'
     elif question.lower() in ['ile przyjęć błędnych', 'liczba przyjęć błędnych', 'błędne przyjęcia']:
@@ -93,7 +92,23 @@ def get_answer(question, team):
         return f'Liczba wykonanych negatywnych przyjęć przez drużynę to {statistics[1][9]}.'
     elif question.lower() in ['ile przyjęć perfekcyjnych', 'liczba przyjęć perfekcyjnych', 'perfekcyjne przyjęcia']:
         return f'Liczba wykonanych perfekcyjnych przyjęć przez drużynę to {statistics[1][10]}. Procentowo {statistics[1][11]}%.'
+    elif question.lower() in ['atak']:
+        return f'Liczba wykonanych ataków przez drużynę to {statistics[1][12]}' \
+               f'Błędne ataki {statistics[1][13]}. ' \
+               f'Zablokowane ataki {statistics[1][14]}. ' \
+               f'Perfekcyjne ataki {statistics[1][15]}.  Procentowo {statistics[1][16]}%. '
+    elif question.lower() in ['ile ataków', 'liczba ataków']:
+        return f'Liczba wykonanych ataków przez drużynę to {statistics[1][12]}.'
+    elif question.lower() in ['ile ataków błędnych', 'liczba ataków błędnych', 'błędne ataki']:
+        return f'Liczba wykonanych błędbych przyjęć przez drużynę to {statistics[1][13]}.'
+    elif question.lower() in ['ile ataków zablokowanych', 'liczba ataków zablokowanych', 'zablokowane ataki']:
+        return f'Liczba zablokowanych własnych atakówto {statistics[1][14]}.'
+    elif question.lower() in ['ile ataków perfekcyjnych', 'liczba ataków perfekcyjnych', 'perfekcyjne ataki']:
+        return f'Liczba wykonanych perfekcyjnych ataków przez drużynę to {statistics[1][15]}. Procentowo {statistics[1][16]}%.'
+    elif question.lower() in ['bloki']:
+        return f'Liczba wykonanych bloków przez drużynę to {statistics[1][17]}. ' \
+               f'Średnia liczba bloków na set to {statistics[1][18]}.'
     else:
-        return f'Nie zrozumiano'
+        return 'Nie rozumiem'
 
 
