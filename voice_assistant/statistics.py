@@ -27,7 +27,20 @@ def get_statistics(path):
     return statistics, statistics2
 
 
+def get_classification():
+    classification = []
+    url = "https://www.plusliga.pl/table.html"
+    result = requests.get(url)
+    doc = BeautifulSoup(result.text, "html.parser")
+    dane = doc.find_all('tr', attrs={"data-termin":"1-1-19"})
+    for row in dane:
+        team = row.find("a")
+        classification.append(team.string)
+
+    return classification
+
+
+
 if __name__ == '__main__':
 
-    statistics  = get_statistics("https://www.plusliga.pl/statsTeams/type/teams/id/1401.html")
-    print(statistics)
+    get_classification()

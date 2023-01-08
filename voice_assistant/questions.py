@@ -1,46 +1,46 @@
-from statistics import get_statistics
+from statistics import *
 
 
 def get_team(team):
     if team.lower() in ['rzeszów', 'asseco resovia rzeszów', 'asseco', 'resovia']:
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1401.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1401.html', "Asseco Resovia Rzeszów"]
     elif team.lower() in ['aluron CMC warta zawiercie', 'warta zawiercie', 'zawiercie', 'aluron']:
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/30288.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/30288.html', "Aluron CMC Warta Zawiercie"]
     elif team.lower() in ['barkom każany lwów', 'lwów', 'barkom', 'każany', 'barkom każay', 'kazany',
                           'barkom kazany lwów']:
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/2100376.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/2100376.html', "Barkom Każany Lwów"]
     elif team.lower() in ['bbts bielsko biała', 'bielsko biała', 'bielsko', 'bielsko biala', 'bielsko-biała']:
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1548.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1548.html', "BBTS Bielsko-Biała"]
     elif team.lower() in 'cerrad enea czarni radom':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1545.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1545.html', "Cerrad Enea Czarni Radom"]
     elif team.lower() in 'kuprum lubin':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/26787.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/26787.html', "Cuprum Lubin"]
     elif team.lower() in 'gks katowice':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/29741.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/29741.html', "GKS Katowice"]
     elif team.lower() in 'grupa azoty zaksa kędzierzyn-koźle':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1410.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1410.html', "Grupa Azoty ZAKSA Kędzierzyn-Koźle	"]
     elif team.lower() in 'indykpol azs olsztyn':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1406.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1406.html', "Indykpol AZS Olsztyn"]
     elif team.lower() in 'jastrzębski węgiel':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1405.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1405.html', "Jastrzębski Węgiel"]
     elif team.lower() in 'luk lublin':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/2100016.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/2100016.html', "LUK Lublin"]
     elif team.lower() in 'pge skra bełchatów':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1407.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1407.html', "PGE Skra Bełchatów"]
     elif team.lower() in 'projekt warszawa':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1403.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1403.html', "Projekt Warszawa"]
     elif team.lower() in 'psg stal nysa':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1304.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1304.html', "PSG Stal Nysa"]
     elif team.lower() in 'ślepsk malow suwałki':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/30289.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/30289.html', "Ślepsk Malow Suwałki"]
     elif team.lower() in 'trefl gdańsk':
-        return 'https://www.plusliga.pl/statsTeams/type/teams/id/1411.html'
+        return ['https://www.plusliga.pl/statsTeams/type/teams/id/1411.html', "Trefl Gdańsk"]
     else:
         return None
 
 
-def get_answer(question, team):
-    statistics = get_statistics(team)
+def get_answer(question, team1, team2):
+    statistics = get_statistics(team1)
     #staty drużynowe
     if question.lower() in ['ile mistrzostw polski', 'mistrzostwo', 'mistrzostwa polski', 'mistrzostwa']:
         return f'Liczba zdobytych mistrzostw Polski to {statistics[0][0]}.'
@@ -108,7 +108,20 @@ def get_answer(question, team):
     elif question.lower() in ['bloki']:
         return f'Liczba wykonanych bloków przez drużynę to {statistics[1][17]}. ' \
                f'Średnia liczba bloków na set to {statistics[1][18]}.'
+    elif question.lower() in ['klasyfikacja', 'tabela', 'miejsce w tabeli']:
+        return get_classification_place(team2)
     else:
         return 'Nie rozumiem'
 
 
+def get_classification_place(team_name):
+    classification = get_classification()
+    for team in classification:
+        if team == team_name:
+            return f'Miejsce w tabeli to {classification.index(team) +1 }'
+
+
+
+if __name__ == '__main__':
+
+    print(get_classification_place("Cuprum Lubin"))

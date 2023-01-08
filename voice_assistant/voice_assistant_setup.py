@@ -9,6 +9,7 @@ engine.setProperty('rate', 170)
 recognizer = sr.Recognizer()
 recognizer.dynamic_energy_threshold = False
 
+
 def cmd():
 
     while True:
@@ -25,7 +26,7 @@ def cmd():
             except sr.RequestError as e:
                 print('error:', e)
             path = get_team(team)
-            if path is None:
+            if path[0] is None:
                 print('Nie rozumiem')
                 engine.say('Nie rozumiem')
                 engine.runAndWait()
@@ -47,7 +48,7 @@ def cmd():
                             engine.runAndWait()
                             break
                         else:
-                            answer = get_answer(command, path)
+                            answer = get_answer(command, path[0], path[1])
                             engine.say(answer)
                             engine.runAndWait()
                     except sr.UnknownValueError:
@@ -58,9 +59,3 @@ def cmd():
 
 while True:
     cmd()
-# import speech_recognition as sr
-# r = sr.Recognizer()
-# with sr.Microphone() as source:
-#    audio = r.listen(source)
-#
-# print("Google Speech Recognition thinks you said " + r.recognize_google(audio, language="pl"))
