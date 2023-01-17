@@ -13,7 +13,7 @@ def get_team(team):
         return ['https://www.plusliga.pl/statsTeams/type/teams/id/1548.html', "BBTS Bielsko-Biała"]
     elif team.lower() in 'cerrad enea czarni radom':
         return ['https://www.plusliga.pl/statsTeams/type/teams/id/1545.html', "Cerrad Enea Czarni Radom"]
-    elif team.lower() in 'kuprum lubin':
+    elif team.lower() in ['kuprum lubin', 'cuprum lubin']:
         return ['https://www.plusliga.pl/statsTeams/type/teams/id/26787.html', "Cuprum Lubin"]
     elif team.lower() in 'gks katowice':
         return ['https://www.plusliga.pl/statsTeams/type/teams/id/29741.html', "GKS Katowice"]
@@ -92,8 +92,8 @@ def get_answer(question, team1, team2):
         return f'Liczba wykonanych negatywnych przyjęć przez drużynę to {statistics[1][9]}.'
     elif question.lower() in ['ile przyjęć perfekcyjnych', 'liczba przyjęć perfekcyjnych', 'perfekcyjne przyjęcia']:
         return f'Liczba wykonanych perfekcyjnych przyjęć przez drużynę to {statistics[1][10]}. Procentowo {statistics[1][11]}%.'
-    elif question.lower() in ['atak']:
-        return f'Liczba wykonanych ataków przez drużynę to {statistics[1][12]}' \
+    elif question.lower() in ['atak', 'a tak']:
+        return f'Liczba wykonanych ataków przez drużynę to {statistics[1][12]}. ' \
                f'Błędne ataki {statistics[1][13]}. ' \
                f'Zablokowane ataki {statistics[1][14]}. ' \
                f'Perfekcyjne ataki {statistics[1][15]}.  Procentowo {statistics[1][16]}%. '
@@ -111,7 +111,7 @@ def get_answer(question, team1, team2):
     elif question.lower() in ['klasyfikacja', 'tabela', 'miejsce w tabeli']:
         return get_classification_place(team2)
     else:
-        return 'Nie rozumiem'
+        return None
 
 
 def get_classification_place(team_name):

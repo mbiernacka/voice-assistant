@@ -9,7 +9,8 @@ def get_statistics(path):
     result = requests.get(url)
     doc = BeautifulSoup(result.text, "html.parser")
 
-    statystyki_laczne = doc.find_all('table', attrs={'class': 'rs-standings-table stats-table table table-bordered table-hover table-condensed table-striped'})
+    statystyki_laczne = doc.find_all('table', attrs={
+        'class': 'rs-standings-table stats-table table table-bordered table-hover table-condensed table-striped'})
     for row in statystyki_laczne:
         b = row.find_all('tbody')
         for for2 in b:
@@ -21,7 +22,8 @@ def get_statistics(path):
         statistics2.append(a[i].string)
 
     for i in range(8):
-        row = doc.find_all('div', attrs={"class" : "stats-icon"})[i] #w ten sposob wybierajac indeksy 0-7 dostaniemy statystyki druzyny
+        row = doc.find_all('div', attrs={"class": "stats-icon"})[
+            i]  # w ten sposob wybierajac indeksy 0-7 dostaniemy statystyki druzyny
         statistics.append(int(row.parent.find("span").string))
 
     return statistics, statistics2
@@ -32,7 +34,7 @@ def get_classification():
     url = "https://www.plusliga.pl/table.html"
     result = requests.get(url)
     doc = BeautifulSoup(result.text, "html.parser")
-    dane = doc.find_all('tr', attrs={"data-termin":"1-1-19"})
+    dane = doc.find_all('tr', attrs={"data-termin":"1-1-30"})
     for row in dane:
         team = row.find("a")
         classification.append(team.string)
@@ -40,7 +42,5 @@ def get_classification():
     return classification
 
 
-
 if __name__ == '__main__':
-
-    get_classification()
+    print(get_classification())
