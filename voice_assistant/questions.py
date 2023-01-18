@@ -52,6 +52,8 @@ def get_answer(question, team1, team2):
         return f'Liczba zdobytych mistrzostw Polski to {statistics[0][0]}. ' \
                f'Liczba zdobytych wicemistrzostw Polski to {statistics[0][1]}. ' \
                f'Liczba zdobytych trzecich miejsc Polski to {statistics[0][2]}. '
+    elif question.lower() in ['liczba sezonów', 'sezony w lidze', 'liczba sezonów w lidze']:
+        return f'Liczba sezonów rozegranych przez drużynę w PlusLidze to {statistics[0][3]}.'
     elif question.lower() in ['ile wygranych meczy', 'ile wygranych', 'wygrane']:
         return f'Drużyna wygrała {statistics[0][4]} meczy'
     elif question.lower() in ['ile przegranych meczy', 'ile przegranych', 'przegrane']:
@@ -70,7 +72,7 @@ def get_answer(question, team1, team2):
         return f'Liczba zdobytych punktów przez drużynę to {statistics[1][2]} '
     elif question.lower() in ['zagrywka']:
         return f'Liczba wykonanych zagrywek przez drużynę to {statistics[1][3]}.  ' \
-               f'`Asy {statistics[1][4]}. ' \
+               f'Asy {statistics[1][4]}. ' \
                f'Błędne zagrywki {statistics[1][5]}. ' \
                f'Średnia liczba asów na set {statistics[1][6]}.'
     elif question.lower() in ['as', 'asy', 'asy serwisowe', 'ile asów serwisowych']:
@@ -102,7 +104,7 @@ def get_answer(question, team1, team2):
     elif question.lower() in ['ile ataków błędnych', 'liczba ataków błędnych', 'błędne ataki']:
         return f'Liczba wykonanych błędbych przyjęć przez drużynę to {statistics[1][13]}.'
     elif question.lower() in ['ile ataków zablokowanych', 'liczba ataków zablokowanych', 'zablokowane ataki']:
-        return f'Liczba zablokowanych własnych atakówto {statistics[1][14]}.'
+        return f'Liczba zablokowanych własnych ataków to {statistics[1][14]}.'
     elif question.lower() in ['ile ataków perfekcyjnych', 'liczba ataków perfekcyjnych', 'perfekcyjne ataki']:
         return f'Liczba wykonanych perfekcyjnych ataków przez drużynę to {statistics[1][15]}. Procentowo {statistics[1][16]}%.'
     elif question.lower() in ['bloki']:

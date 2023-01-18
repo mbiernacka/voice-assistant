@@ -3,20 +3,19 @@ import speech_recognition as sr
 from questions import *
 from questions import get_team
 
-engine = pyttsx3.init()
-engine.setProperty('rate', 170)
-recognizer = sr.Recognizer()
-recognizer.dynamic_energy_threshold = False
-
 
 def cmd():
 
+    engine = pyttsx3.init()
+    engine.setProperty('rate', 170)
+    recognizer = sr.Recognizer()
+    recognizer.dynamic_energy_threshold = False
+
     while True:
-        team = None
         with sr.Microphone() as source:
-            print('Clearing...')
-            recognizer.adjust_for_ambient_noise(source, duration=0.5)
-            print('Waiting for the team name...')
+            print('Czyszczenie...')
+            recognizer.adjust_for_ambient_noise(source, duration=1)
+            print('Podaj nazwę drużyny...')
             recordedAudio = recognizer.listen(source, 60, 10)
             try:
                 team = recognizer.recognize_google(recordedAudio, language='pl_PL')
@@ -24,40 +23,41 @@ def cmd():
                     exit(0)
                 path = get_team(team)
                 if path is None:
-                    print('I don\'t understand...')
+                    print('Nie rozumiem...')
                     engine.runAndWait()
                 else:
+                    print("\nDrużyna: " + path[1])
                     while True:
-                        print('Clearing...')
-                        recognizer.adjust_for_ambient_noise(source, duration=0.5)
-                        print('Waiting for statistics...')
+                        print('Czyszczenie...')
+                        recognizer.adjust_for_ambient_noise(source, duration=1)
+                        print('Podaj statystykę...')
                         recordedAudio = recognizer.listen(source, 60, 10)
                         try:
                             command = recognizer.recognize_google(recordedAudio, language='pl_PL')
                             if command == 'koniec':
                                 exit()
                             if command is None:
-                                print('I don\'t have such information...')
+                                print('Nie posiadam takiej informacji...')
                                 engine.runAndWait()
                                 break
                             elif command.lower() == 'zmień drużynę':
-                                print("Choose different team...")
+                                print("Wybierz inną drużynę...")
                                 engine.runAndWait()
                                 break
                             else:
                                 answer = get_answer(command, path[0], path[1])
                                 if answer is None:
-                                    print('I don\'t have such information...')
+                                    print('Nie posiadam takiej informacji...')
                                 else:
                                     print(answer)
                                     engine.say(answer)
                                     engine.runAndWait()
                         except sr.UnknownValueError:
-                            print('nie rozumiem')
+                            print('Nie rozumiem...')
                         except sr.RequestError as e:
                             print('error:', e)
             except sr.UnknownValueError:
-                print('I don\'t understand...')
+                print('Nie rozumiem...')
             except sr.RequestError as e:
                 print('error:', e)
 
