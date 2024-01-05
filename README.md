@@ -5,6 +5,7 @@ Ten moduł stworzony w języku Python działa jako interaktywny asystent głosow
 Przykład pytania i odpowiedzi:
 
 Q: 'ile mistrzostw polski', 'mistrzostwo', 'mistrzostwa polski’
+
 A: Liczba zdobytych mistrzostw Polski to 2.
 
 Dane używane przez asystenta zostały ograniczone i pochodzą z oficjalnej strony PlusLigi. Informacje te zostały odpowiednio przetworzone i dostosowane do potrzeb projektu.
